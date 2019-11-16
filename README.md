@@ -1,6 +1,6 @@
 # ConwayConsole
+![Generic badge](https://github.com/LtChae/conway_elixir/workflows/Elixir%20CI/badge.svg)
 
-https://github.com/LtChae/conway_elixir/workflows/Elixir%20CI/badge.svg
 
 **TODO: Add description**
 
