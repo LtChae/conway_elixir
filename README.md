@@ -1,5 +1,7 @@
 # ConwayConsole
 
+https://github.com/LtChae/conway_elixir/workflows/Elixir%20CI/badge.svg
+
 **TODO: Add description**
 
 ## Installation
