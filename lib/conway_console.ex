@@ -3,29 +3,25 @@ defmodule ConwayConsole do
   Documentation for ConwayConsole.
   """
 
-  @doc """
-  Hello world.
-
-  ## Examples
-
-  """
   def print_board({board, {x, y}}) do
     top_bar = Enum.map(1..x, fn _ -> "-" end) |> Enum.join("-")
 
-    board_string = Enum.reduce(1..x, "", fn x_coord, board_string ->
-      new_board_string =
-        Enum.reduce(1..y, board_string, fn y_coord, board_section ->
-          character =
-            case Map.get(board, {x_coord, y_coord}) do
-              true -> "x"
-              false -> " "
-            end
+    board_string =
+      Enum.reduce(1..x, "", fn x_coord, board_string ->
+        new_board_string =
+          Enum.reduce(1..y, board_string, fn y_coord, board_section ->
+            character =
+              case Map.get(board, {x_coord, y_coord}) do
+                true -> "x"
+                false -> " "
+              end
 
-          board_section <> " " <> character
-        end)
+            board_section <> " " <> character
+          end)
 
-      new_board_string <> "|\n"
-    end)
+        new_board_string <> "|\n"
+      end)
+
     top_bar <> "-+\n" <> board_string
   end
 
@@ -60,6 +56,7 @@ defmodule ConwayConsole do
               true -> should_live(old_board, {x_coord, y_coord})
               false -> should_revive(old_board, {x_coord, y_coord})
             end
+
           Map.put(board_section, {x_coord, y_coord}, new_cell)
         end)
       end)
@@ -106,12 +103,15 @@ defmodule ConwayConsole do
 
   def game_of_life(board, generations) do
     1..generations
-    |> Enum.map_reduce(board,
+    |> Enum.map_reduce(
+      board,
       fn generation, board ->
         Process.sleep(100)
         # IO.puts("=================================")
         {generation, lifecycle(board) |> log_board()}
-      end)
+      end
+    )
+
     :ok
   end
 end

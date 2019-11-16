@@ -47,23 +47,34 @@ defmodule ConwayConsoleTest do
     end
 
     test "a live cell with two neighbors survives" do
-      board = test_board() |> Map.put({2, 1}, true) |> Map.put({2, 2}, true) |> Map.put({2, 3}, true)
-      assert ConwayConsole.should_live(board, {2,2})
+      board =
+        test_board() |> Map.put({2, 1}, true) |> Map.put({2, 2}, true) |> Map.put({2, 3}, true)
+
+      assert ConwayConsole.should_live(board, {2, 2})
     end
 
     test "a live cell with less than two neighbors dies" do
       board = test_board() |> Map.put({2, 2}, true) |> Map.put({2, 3}, true)
-      refute ConwayConsole.should_live(board, {2,2})
+      refute ConwayConsole.should_live(board, {2, 2})
     end
 
     test "a live cell with more than 3 neighbors dies" do
-      board = test_board() |> Map.put({2, 1}, true) |> Map.put({2, 2}, true) |> Map.put({2, 3}, true) |> Map.put({1, 2}, true) |> Map.put({1, 3}, true)
-      refute ConwayConsole.should_live(board, {2,2})
+      board =
+        test_board()
+        |> Map.put({2, 1}, true)
+        |> Map.put({2, 2}, true)
+        |> Map.put({2, 3}, true)
+        |> Map.put({1, 2}, true)
+        |> Map.put({1, 3}, true)
+
+      refute ConwayConsole.should_live(board, {2, 2})
     end
 
     test "a dead cell with 3 neighbors revives" do
-      board = test_board() |> Map.put({2, 3}, true) |> Map.put({1, 2}, true) |> Map.put({1, 3}, true)
-      assert ConwayConsole.should_revive(board, {2,2})
+      board =
+        test_board() |> Map.put({2, 3}, true) |> Map.put({1, 2}, true) |> Map.put({1, 3}, true)
+
+      assert ConwayConsole.should_revive(board, {2, 2})
     end
   end
 
